@@ -82,21 +82,30 @@ Browser（dsh web 页面）
 ## 快速开始
 
 ```bash
-# 1. 获取源码（构建产物 lib/ 不入库，需本地构建）
-git clone https://github.com/shuaihaoV/dsh-mcp-skill-control.git
-cd dsh-mcp-skill-control
-
-# 2. 构建（依赖从 bun 全局 dsh 安装解析；可用 DSH_GLOBAL_NM 覆盖）
-bash scripts/build.sh
-
-# 3. 安装到 web profile（link 模式，改 profile package.json + bundles）
-dsh plugin --profile web add .
+# 快速安装：从 GitHub 拉取源码并自动构建（prepare 钩子），再注册到 web profile
+dsh plugin --profile web add git+https://github.com/shuaihaoV/dsh-mcp-skill-control.git
 
 # 卸载
 dsh plugin --profile web remove @dsh-external/dsh-mcp-skill-control
 
-# 4. 启动后访问：会话头部右上角 "MCP" 胶囊按钮（Session log 左侧）
+# 启动后访问：会话头部右上角 "MCP" 胶囊按钮（Session log 左侧）
 open http://127.0.0.1:3080
+```
+
+### 从源码开发
+
+```bash
+git clone https://github.com/shuaihaoV/dsh-mcp-skill-control.git
+cd dsh-mcp-skill-control
+
+# 本地构建（构建产物 lib/ 不入库；依赖从 bun 全局 dsh 安装解析，可用 DSH_GLOBAL_NM 覆盖）
+bash scripts/build.sh
+
+# 装到 web profile（link 模式，改 profile package.json + bundles）
+dsh plugin --profile web add .
+
+# 仅类型检查
+bash scripts/build.sh --no-emit
 ```
 
 ## 生效方式
