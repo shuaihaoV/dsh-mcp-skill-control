@@ -85,6 +85,9 @@ Browser（dsh web 页面）
 # 快速安装：从 GitHub 拉取源码并自动构建（prepare 钩子），再注册到 web profile
 dsh plugin --profile web add https://github.com/shuaihaoV/dsh-mcp-skill-control
 
+# 若安装被 supply-chain 策略拦截（prepare 构建脚本需放行），在 profile 目录一键批准：
+cd ~/.dsh/profiles/web && pnpm approve-builds --all
+
 # 卸载
 dsh plugin --profile web remove @dsh-external/dsh-mcp-skill-control
 
@@ -92,7 +95,7 @@ dsh plugin --profile web remove @dsh-external/dsh-mcp-skill-control
 open http://127.0.0.1:3080
 ```
 
-> **pnpm 11 构建放行**：git 直装依赖 `prepare` 钩子构建产物，pnpm 的 supply-chain 保护会拦截构建脚本。首次安装若报 `[ERR_PNPM_GIT_DEP_PREPARE_NOT_ALLOWED]`，在 `<profile>/pnpm-workspace.yaml` 的 `allowBuilds` 添加本仓库的 **git repo 级键**（不含 commit SHA，一次配置、后续 push 无需再改）：
+> **pnpm 11 构建放行**：git 直装依赖 `prepare` 钩子构建产物，pnpm 的 supply-chain 保护会拦截构建脚本。首次安装若报 `[ERR_PNPM_GIT_DEP_PREPARE_NOT_ALLOWED]`，在 profile 目录运行 `pnpm approve-builds --all` 一键批准所有待放行构建；或手动在 `<profile>/pnpm-workspace.yaml` 的 `allowBuilds` 添加本仓库的 **git repo 级键**（不含 commit SHA，一次配置、后续 push 无需再改）：
 >
 > ```yaml
 > allowBuilds:
