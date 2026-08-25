@@ -34,7 +34,7 @@ src/client/                Browser 半（React；tsdown 打成 lib/client.js 的
 scripts/build.sh           构建：链接全局 dsh 依赖 → tsc → tsdown
 tsdown.config.ts           双入口打包配置（Node ESM + browser closure-factory）
 cordis.patch.yml           bundle patch 层：插入 mcp-manager host 行
-lib/                       构建产物（提交在仓库里；见下文"构建产物纪律"）
+lib/                       构建产物（本地生成，不入库；见下文"构建产物纪律"）
 ```
 
 ## 构建与验证
@@ -146,8 +146,9 @@ typert gateway 的 SRC 发现靠**函数参数名**匹配 wire 字段。`service
 
 ## 构建产物纪律
 
-`lib/` 当前**随目录保存**（非 git 仓库；便于 `dsh plugin add <dir>` 直接安装）。因此：
+`lib/` **不入库**（`.gitignore` 已忽略）——公开仓库只含源码与文档，产物由使用者本地构建。因此：
 
 - 改 `src/` 后必须重跑 `bash scripts/build.sh` 重建 `lib/`，否则安装的是旧产物
+- `dsh plugin add <dir>` / 发布前，`lib/` 必须存在（`package.json` 的 main/exports 指向 `lib/`）；Clone 下来的目录要先构建再安装
 - 不要手工编辑 `lib/`
 - `tsdown.config.ts` 的 browser 半输出格式（closure-factory banner/footer）是 loader 模块表的契约，不可随意改

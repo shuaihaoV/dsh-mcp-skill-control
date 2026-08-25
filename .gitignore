@@ -1,5 +1,6 @@
 # 依赖与产物
 node_modules/
+lib/
 .tmp/
 
 # 编辑器 / 系统文件
