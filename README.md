@@ -83,7 +83,7 @@ Browser（dsh web 页面）
 
 ```bash
 # 快速安装：从 GitHub 拉取源码并自动构建（prepare 钩子），再注册到 web profile
-dsh plugin --profile web add git+https://github.com/shuaihaoV/dsh-mcp-skill-control.git
+dsh plugin --profile web add https://github.com/shuaihaoV/dsh-mcp-skill-control
 
 # 卸载
 dsh plugin --profile web remove @dsh-external/dsh-mcp-skill-control
