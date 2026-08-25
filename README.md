@@ -1,6 +1,6 @@
 # dsh-mcp-skill-control
 
-![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg) ![DSH Plugin](https://img.shields.io/badge/DSH-plugin-8A2BE2.svg)
+![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg) ![DSH Plugin](https://img.shields.io/badge/DSH-plugin-8A2BE2.svg) ![GitHub stars](https://img.shields.io/github/stars/shuaihaoV/dsh-mcp-skill-control)
 
 DeepSeek Harness（DSH）**第三方插件**：在 Web GUI（`dsh web`）会话头部提供一个管理面板——**MCP 服务器**页签（查看连接状态，停用 / 启用 / 重启，新增 / 删除，JSON 导入）与 **Skills** 页签（启停本地技能）。
 
@@ -82,19 +82,20 @@ Browser（dsh web 页面）
 ## 快速开始
 
 ```bash
-# 构建（依赖从 bun 全局 dsh 安装解析；可用 DSH_GLOBAL_NM 覆盖）
+# 1. 获取源码（构建产物 lib/ 不入库，需本地构建）
+git clone https://github.com/shuaihaoV/dsh-mcp-skill-control.git
+cd dsh-mcp-skill-control
+
+# 2. 构建（依赖从 bun 全局 dsh 安装解析；可用 DSH_GLOBAL_NM 覆盖）
 bash scripts/build.sh
 
-# 仅类型检查
-bash scripts/build.sh --no-emit
-
-# 安装到 web profile（link 模式，改 profile package.json + bundles）
-dsh plugin --profile web add /path/to/dsh-mcp-skill-control
+# 3. 安装到 web profile（link 模式，改 profile package.json + bundles）
+dsh plugin --profile web add .
 
 # 卸载
 dsh plugin --profile web remove @dsh-external/dsh-mcp-skill-control
 
-# 启动后访问：会话头部右上角 "MCP" 胶囊按钮（Session log 左侧）
+# 4. 启动后访问：会话头部右上角 "MCP" 胶囊按钮（Session log 左侧）
 open http://127.0.0.1:3080
 ```
 

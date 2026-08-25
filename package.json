@@ -27,6 +27,7 @@
     "type": "git",
     "url": "https://github.com/shuaihaoV/dsh-mcp-skill-control.git"
   },
+  "homepage": "https://github.com/shuaihaoV/dsh-mcp-skill-control",
   "dsh": {
     "bundle": {
       "patch": "./cordis.patch.yml"
