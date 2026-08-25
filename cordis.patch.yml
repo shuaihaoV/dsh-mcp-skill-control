@@ -3,5 +3,5 @@
 # 节点半从 loader 树扫描自动进 window.__DSH_BOOT__。
 - insert:
     - id: mcp-manager
-      name: '@dsh-external/dsh-mcp-skill-control'
+      name: '@shuaihaov/dsh-mcp-skill-control'
       config: {}

@@ -23,8 +23,8 @@
  *           --dsw-font-family, --dsw-alias-scrollbar-bg-l2
  */
 
-export const STYLE_TAG_ID = '@dsh-external/dsh-mcp-skill-control/panel.css'
-export const PLUGIN_ID = '@dsh-external/dsh-mcp-skill-control'
+export const STYLE_TAG_ID = '@shuaihaov/dsh-mcp-skill-control/panel.css'
+export const PLUGIN_ID = '@shuaihaov/dsh-mcp-skill-control'
 
 /** Monospace stack: the design system ships no mono token. */
 const MONO = 'ui-monospace,SFMono-Regular,Menlo,monospace'

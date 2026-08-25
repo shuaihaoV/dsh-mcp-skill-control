@@ -89,7 +89,7 @@ dsh plugin --profile web add https://github.com/shuaihaoV/dsh-mcp-skill-control
 cd ~/.dsh/profiles/web && pnpm approve-builds --all
 
 # 卸载
-dsh plugin --profile web remove @dsh-external/dsh-mcp-skill-control
+dsh plugin --profile web remove @shuaihaov/dsh-mcp-skill-control
 
 # 启动后访问：会话头部右上角 "MCP" 胶囊按钮（Session log 左侧）
 open http://127.0.0.1:3080
@@ -99,7 +99,7 @@ open http://127.0.0.1:3080
 >
 > ```yaml
 > allowBuilds:
->   '@dsh-external/dsh-mcp-skill-control@git+https://github.com/shuaihaoV/dsh-mcp-skill-control.git': true
+>   '@shuaihaov/dsh-mcp-skill-control@git+https://github.com/shuaihaoV/dsh-mcp-skill-control.git': true
 > ```
 >
 > 再重跑安装命令即可。

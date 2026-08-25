@@ -5,7 +5,7 @@
  * it (the source checkout may have no node_modules). react/cordis/platform
  * modules stay external — the module table answers them at runtime.
  */
-const ID = '@dsh-external/dsh-mcp-skill-control'
+const ID = '@shuaihaov/dsh-mcp-skill-control'
 
 /** Specifiers the loader module table resolves for browser bundles. */
 const EXTERNALS = [
