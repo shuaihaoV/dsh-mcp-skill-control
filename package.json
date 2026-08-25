@@ -1,6 +1,6 @@
 {
   "name": "@dsh-external/dsh-mcp-skill-control",
-  "version": "0.1.0",
+  "version": "0.0.1",
   "description": "DSH Web GUI 的 MCP 管理面板：查看 MCP 服务器连接状态，停用/启用/重启（可选重启持久）",
   "private": true,
   "type": "module",

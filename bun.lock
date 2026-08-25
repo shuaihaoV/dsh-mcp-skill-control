@@ -14,6 +14,7 @@
         "@deepseek-ai/dsh-tools": ">=0.0.1-rc <2",
         "@deepseek-ai/dsh-typert-protocol": ">=0.0.1-rc <2",
         "cordis": ">=4.0.0-rc <5",
+        "yaml": "^2.8.0",
       },
     },
   },
@@ -233,6 +234,8 @@
     "undici-types": ["undici-types@8.3.0", "https://registry.npmmirror.com/undici-types/-/undici-types-8.3.0.tgz", {}, "sha512-j375ScV60dom+YkPFIfTLcOiPxkN/buHz5GobjLhixFuANaNs3C9l4GmrWqejgXWJ7BbJcFYpTEUkS1Ge8bpZQ=="],
 
     "verkit": ["verkit@0.3.2", "https://registry.npmmirror.com/verkit/-/verkit-0.3.2.tgz", {}, "sha512-zj/ob3UsvJGN0whEAKFp53REA5X66hvffVqoCtVQAakJKnKlH+/PcOfMoFwIG/o4rElqLv/ycAFlx8ZlXUorCg=="],
+
+    "yaml": ["yaml@2.9.0", "https://registry.npmmirror.com/yaml/-/yaml-2.9.0.tgz", { "bin": { "yaml": "bin.mjs" } }, "sha512-2AvhNX3mb8zd6Zy7INTtSpl1F15HW6Wnqj0srWlkKLcpYl/gMIMJiyuGq2KeI2YFxUPjdlB+3Lc10seMLtL4cA=="],
 
     "yuku-ast": ["yuku-ast@0.8.7", "https://registry.npmmirror.com/yuku-ast/-/yuku-ast-0.8.7.tgz", { "dependencies": { "@yuku-toolchain/types": "^0.8.7" } }, "sha512-h6+4bDfyootiMB9vckk5uKo5r5j0GHrkr17FQTDNfEsFT3DWlN9uu1HJwQwc64pgmLCI945fWM3lbTIqxjT3GQ=="],
 
