@@ -92,14 +92,14 @@ dsh plugin --profile web remove @dsh-external/dsh-mcp-skill-control
 open http://127.0.0.1:3080
 ```
 
-> **pnpm 11 构建放行**：git 直装依赖 `prepare` 钩子构建产物，pnpm 的 supply-chain 保护会拦截构建脚本。首次安装若报 `[ERR_PNPM_GIT_DEP_PREPARE_NOT_ALLOWED]`，把报错提示的精确键添加到 `<profile>/pnpm-workspace.yaml` 的 `allowBuilds` 后重跑：
+> **pnpm 11 构建放行**：git 直装依赖 `prepare` 钩子构建产物，pnpm 的 supply-chain 保护会拦截构建脚本。首次安装若报 `[ERR_PNPM_GIT_DEP_PREPARE_NOT_ALLOWED]`，在 `<profile>/pnpm-workspace.yaml` 的 `allowBuilds` 添加本仓库的 **git repo 级键**（不含 commit SHA，一次配置、后续 push 无需再改）：
 >
 > ```yaml
 > allowBuilds:
->   '@dsh-external/dsh-mcp-skill-control@https://codeload.github.com/<commit SHA 按报错填写>': true
+>   '@dsh-external/dsh-mcp-skill-control@git+https://github.com/shuaihaoV/dsh-mcp-skill-control.git': true
 > ```
 >
-> 该键包含每次 push 都会变化的 commit SHA，之后更新插件再报错时按新提示同步更新即可。
+> 再重跑安装命令即可。
 
 ### 从源码开发
 
