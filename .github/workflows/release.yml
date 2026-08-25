@@ -1,0 +1,75 @@
+name: release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Install dependencies (frozen lockfile)
+        run: bun install --frozen-lockfile
+
+      - name: Build lib/
+        run: bash scripts/build.sh
+
+      - name: Assemble package tarball
+        run: |
+          set -euo pipefail
+          PKG_NAME="dsh-mcp-skill-control"
+          VERSION="${GITHUB_REF_NAME#v}"
+          STAGE="$(mktemp -d)"
+          mkdir -p "$STAGE/$PKG_NAME"
+          cp -r lib src scripts "$STAGE/$PKG_NAME/"
+          cp cordis.patch.yml package.json README.md LICENSE "$STAGE/$PKG_NAME/"
+          tar -czf "$PKG_NAME-v$VERSION.tar.gz" -C "$STAGE" "$PKG_NAME"
+          echo "PKG_TARBALL=$PKG_NAME-v$VERSION.tar.gz" >> "$GITHUB_ENV"
+          echo "PKG_SHA256=$(shasum -a 256 "$PKG_NAME-v$VERSION.tar.gz" | awk '{print $1}')" >> "$GITHUB_ENV"
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: ${{ env.PKG_TARBALL }}
+          body: |
+            ## dsh-mcp-skill-control v${{ github.ref_name }}
+
+            DSH（DeepSeek Harness）Web GUI 的 **MCP 服务器管理面板 + 本地技能控制**插件。
+
+            > 🪪 本仓库以 **MIT 协议**开源（见 [LICENSE](https://github.com/shuaihaoV/dsh-mcp-skill-control/blob/main/LICENSE)）
+            > 📦 包名：`@dsh-external/dsh-mcp-skill-control`
+
+            ### 特性
+
+            - **MCP 服务器管理**：状态查看（connected / connecting / unreachable / failed / disabled）、停用 / 启用 / 重启、新增（stdio / streamable-http 双模）、删除、JSON 导入
+            - **本地技能控制**：启停用户 skill root（`~/.dsh/skills`、`~/.agents/skills`）下的技能，写入/移除 frontmatter 的 `disable-model-invocation`
+            - **持久化**：所有变更写入 profile 的 `cordis.patch.yml`，重启后保持
+            - **零 DSH 源码改动**：独立分发，经 `dsh plugin add` 安装
+
+            ### 产物校验
+
+            | 文件 | SHA-256 |
+            |---|---|
+            | ${{ env.PKG_TARBALL }} | `${{ env.PKG_SHA256 }}` |
+
+            ### 安装
+
+            ```bash
+            # 方式一：从 GitHub 仓库直装（自动构建）
+            dsh plugin --profile web add https://github.com/shuaihaoV/dsh-mcp-skill-control
+
+            # 方式二：下载本 release 的 tar.gz 后本地安装（免构建，校验上方 SHA-256）
+            dsh plugin --profile web add ./dsh-mcp-skill-control-v${{ github.ref_name }}.tar.gz
+            ```
